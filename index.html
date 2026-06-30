@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Data Engineering &amp; Analysis: Course Summary (Syllabus Order)</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.6; }
+  h1 { font-size: 1.8em; border-bottom: 3px solid #2c3e50; padding-bottom: 8px; }
+  h2 { font-size: 1.25em; color: white; background: #2c3e50; padding: 8px 12px; margin-top: 2em; }
+  h2 .week-label { font-weight: normal; font-size: 0.8em; opacity: 0.8; }
+  h3 { font-size: 1.05em; color: #34495e; margin-top: 1.2em; border-left: 4px solid #2c3e50; padding-left: 8px; }
+  h4 { font-size: 0.98em; color: #555; margin-top: 1em; }
+  ul { margin: 0.4em 0; }
+  li { margin: 0.3em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 0.8em 0; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; font-size: 0.95em; }
+  th { background: #2c3e50; color: white; }
+  code { background: #eee; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+  .formula { background: #f4f4f4; padding: 8px 12px; border-left: 3px solid #999; font-family: monospace; }
+  .gap-note { background: #fdf3e0; border: 1px solid #e0c27a; padding: 6px 10px; font-size: 0.9em; margin-top: 0.6em; }
+</style>
+</head>
+<body>
+
+  
+<h1>Data Engineering and Analysis — Course Summary</h1>
+
+<h2>Week 1 <span class="week-label">Introduction to Data Engineering</span></h2>
+
+<h3>General Data Lifecycle (5 Steps)</h3>
+<ol>
+<li>Generation/Collection — hardware, sensors, text editors</li>
+<li>Storage — formats such as JSON, XML, MP4</li>
+<li>Maintenance — preprocessing, removing unneeded data</li>
+<li>Usage — analyzing preprocessed data for a task</li>
+<li>Visualization — presenting results</li>
+</ol>
+
+<h3>Data Engineering Lifecycle (5 Stages)</h3>
+<svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:760px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#2c3e50"/>
+    </marker>
+  </defs>
+  <g font-family="Georgia, serif" font-size="14">
+    <rect x="10" y="45" width="130" height="70" rx="8" fill="#2c3e50"/>
+    <text x="75" y="76" fill="white" text-anchor="middle">Generation</text>
+    <text x="75" y="94" fill="white" text-anchor="middle" font-size="11">(Source Systems)</text>
+
+    <line x1="140" y1="80" x2="158" y2="80" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow1)"/>
+
+    <rect x="160" y="45" width="130" height="70" rx="8" fill="#34495e"/>
+    <text x="225" y="85" fill="white" text-anchor="middle">Ingestion</text>
+
+    <line x1="290" y1="80" x2="308" y2="80" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow1)"/>
+
+    <rect x="310" y="45" width="130" height="70" rx="8" fill="#2c3e50"/>
+    <text x="375" y="85" fill="white" text-anchor="middle">Storage</text>
+
+    <line x1="440" y1="80" x2="458" y2="80" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow1)"/>
+
+    <rect x="460" y="45" width="130" height="70" rx="8" fill="#34495e"/>
+    <text x="525" y="85" fill="white" text-anchor="middle">Transformation</text>
+
+    <line x1="590" y1="80" x2="608" y2="80" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow1)"/>
+
+    <rect x="610" y="45" width="130" height="70" rx="8" fill="#2c3e50"/>
+    <text x="675" y="85" fill="white" text-anchor="middle">Serving</text>
+  </g>
+</svg>
+<ol>
+<li><strong>Generation (Source Systems)</strong> — where data originates: structured (SQL transactional databases), semi-structured (JSON), or unstructured (IoT device swarms, message queues such as Apache Kafka)</li>
+<li><strong>Ingestion</strong> — consuming data from sources into a database, governed by the 3Vs: Volume, Velocity, Variety</li>
+<li><strong>Storage</strong> — secure foundation for downstream processes; modern object storage (e.g., Amazon S3) offers built-in querying such as S3 Select</li>
+<li><strong>Transformation</strong> — converting and cleansing data (Constructive, Destructive, Aesthetic, Structural)</li>
+<li><strong>Serving</strong> — final delivery for Analytics, Business Intelligence, or Machine Learning</li>
+</ol>
+
+<h3>Types of Data</h3>
+<ul>
+<li><strong>Structured</strong> — relational tables</li>
+<li><strong>Semi-structured</strong> — XML, JSON</li>
+<li><strong>Unstructured</strong> — text, streaming data</li>
+</ul>
+<p>Origin also splits into <strong>Human-generated</strong> (emails, videos, social media) and <strong>Machine-generated</strong> (satellite telemetry, smart meters, CCTV).</p>
+
+<h3>Why Data Engineering Matters: The Data Science Hierarchy of Needs</h3>
+<ol>
+<li>Collect — instrumentation, logging, sensors, external data, user-generated content, Web APIs, scraping</li>
+<li>Move/Store — pipelines, ETL, structured/unstructured storage</li>
+<li>Explore/Transform — cleaning, anomaly detection, preparation</li>
+<li>Aggregate/Label — metrics, segments, features, training data</li>
+<li>Learn/Optimize — A/B testing, experimentation, simple ML</li>
+<li>AI/Deep Learning — top of the pyramid, requires all prior layers; dirty or siloed data fed directly into AI models fails without the engineering foundation</li>
+</ol>
+
+<h3>Goal of Data Engineering</h3>
+<p>Provide an organized, consistent flow of data supporting analytics, ML, and BI — the bridge between two data types:</p>
+<ul>
+<li><strong>Operational Data</strong> — real-time, transactional data generated by applications</li>
+<li><strong>Analytical Data</strong> — aggregated, optimized data stored in warehouses for reporting</li>
+</ul>
+
+<h3>The Six Undercurrents of Data Engineering</h3>
+<svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:10px auto;">
+  <g font-family="Georgia, serif" font-size="14">
+    <line x1="300" y1="300" x2="300" y2="80" stroke="#bbb" stroke-width="1.5"/>
+    <line x1="300" y1="300" x2="490" y2="190" stroke="#bbb" stroke-width="1.5"/>
+    <line x1="300" y1="300" x2="490" y2="410" stroke="#bbb" stroke-width="1.5"/>
+    <line x1="300" y1="300" x2="300" y2="520" stroke="#bbb" stroke-width="1.5"/>
+    <line x1="300" y1="300" x2="110" y2="410" stroke="#bbb" stroke-width="1.5"/>
+    <line x1="300" y1="300" x2="110" y2="190" stroke="#bbb" stroke-width="1.5"/>
+
+    <circle cx="300" cy="300" r="75" fill="#2c3e50"/>
+    <text x="300" y="295" fill="white" text-anchor="middle">Data</text>
+    <text x="300" y="313" fill="white" text-anchor="middle">Engineering</text>
+
+    <rect x="220" y="50" width="160" height="55" rx="8" fill="#34495e"/>
+    <text x="300" y="83" fill="white" text-anchor="middle" font-size="13">Security</text>
+
+    <rect x="410" y="165" width="170" height="55" rx="8" fill="#34495e"/>
+    <text x="495" y="190" fill="white" text-anchor="middle" font-size="12">Data Management</text>
+    <text x="495" y="206" fill="white" text-anchor="middle" font-size="12">&amp; Ethics</text>
+
+    <rect x="410" y="385" width="170" height="55" rx="8" fill="#34495e"/>
+    <text x="495" y="418" fill="white" text-anchor="middle" font-size="13">Orchestration</text>
+
+    <rect x="220" y="495" width="160" height="55" rx="8" fill="#34495e"/>
+    <text x="300" y="528" fill="white" text-anchor="middle" font-size="13">DataOps</text>
+
+    <rect x="20" y="385" width="170" height="55" rx="8" fill="#34495e"/>
+    <text x="105" y="409" fill="white" text-anchor="middle" font-size="12">Data</text>
+    <text x="105" y="425" fill="white" text-anchor="middle" font-size="12">Architecture</text>
+
+    <rect x="20" y="165" width="170" height="55" rx="8" fill="#34495e"/>
+    <text x="105" y="189" fill="white" text-anchor="middle" font-size="12">Software</text>
+    <text x="105" y="205" fill="white" text-anchor="middle" font-size="12">Engineering</text>
+  </g>
+</svg>
+<table>
+<tr><th>Undercurrent</th><th>Function</th></tr>
+<tr><td>Security</td><td>Principle of Least Privilege (minimal necessary access), IAM role management, encryption in-flight and at-rest, PII masking</td></tr>
+<tr><td>Data Management &amp; Ethics</td><td>Governance, modeling, data quality; poor data quality costs organizations an average of $12.9 million annually; ensures handling respects ethical standards and regulatory compliance</td></tr>
+<tr><td>Orchestration</td><td>Coordinating workflows and dependencies; tasks executed via Time-based or Event-based scheduling</td></tr>
+<tr><td>DataOps</td><td>Agile/DevOps practices applied to data management for rapid innovation, high quality, transparent monitoring</td></tr>
+<tr><td>Data Architecture</td><td>Long-term blueprint for scalable, structured data systems</td></tr>
+<tr><td>Software Engineering</td><td>Core coding skills for pipelines and infrastructure as code</td></tr>
+</table>
+
+<h2>Week 2 <span class="week-label">Data Collection and Data Sources</span></h2>
+
+<h3>Data Collection Methods</h3>
+<ul>
+<li>Observation — watching processes, activities, behaviors</li>
+<li>Surveys/Polls — behavior, attitudes, opinions</li>
+<li>Interviews/Focus Groups — structured or open-ended questions</li>
+<li>Scraping — extracting text/images from websites and social media</li>
+<li>Web APIs — requesting data from a site via URL</li>
+</ul>
+
+<h3>Data Sources</h3>
+<p>Databases, data streams, files.</p>
+
+<h3>Data Quality (Six Dimensions)</h3>
+<p>Accuracy, Completeness, Consistency, Timeliness, Believability, Interpretability.</p>
+
+<h3>Data Ethics and Privacy</h3>
+<ul>
+<li>Goal: handle data respecting ethical standards and privacy regulations</li>
+<li>Protect PII through masking and anonymization</li>
+<li>Encrypt data both in-flight and at-rest</li>
+<li>Enforce the Principle of Least Privilege; manage IAM roles</li>
+<li>Prevents trust-breaking scenarios such as healthcare data leaks</li>
+</ul>
+
+<h2>Week 3 <span class="week-label">Data Integration and ETL</span></h2>
+
+<h3>Data Lakes (ELT) vs. Data Warehouses (ETL)</h3>
+<svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:760px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#2c3e50"/>
+    </marker>
+  </defs>
+  <g font-family="Georgia, serif" font-size="13">
+    <text x="10" y="20" fill="#2c3e50" font-size="14" font-weight="bold">ETL</text>
+    <rect x="10" y="30" width="110" height="45" rx="6" fill="#2c3e50"/>
+    <text x="65" y="57" fill="white" text-anchor="middle">Extract</text>
+    <line x1="120" y1="52" x2="138" y2="52" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow2)"/>
+    <rect x="140" y="30" width="160" height="45" rx="6" fill="#34495e"/>
+    <text x="220" y="50" fill="white" text-anchor="middle" font-size="12">Transform</text>
+    <text x="220" y="65" fill="white" text-anchor="middle" font-size="10">(Staging Area)</text>
+    <line x1="300" y1="52" x2="318" y2="52" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow2)"/>
+    <rect x="320" y="30" width="110" height="45" rx="6" fill="#2c3e50"/>
+    <text x="375" y="57" fill="white" text-anchor="middle">Load</text>
+    <line x1="430" y1="52" x2="448" y2="52" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow2)"/>
+    <rect x="450" y="22" width="150" height="60" rx="6" fill="#1a2530"/>
+    <text x="525" y="48" fill="white" text-anchor="middle" font-size="12">Data</text>
+    <text x="525" y="64" fill="white" text-anchor="middle" font-size="12">Warehouse</text>
+
+    <text x="10" y="125" fill="#2c3e50" font-size="14" font-weight="bold">ELT</text>
+    <rect x="10" y="135" width="110" height="45" rx="6" fill="#2c3e50"/>
+    <text x="65" y="162" fill="white" text-anchor="middle">Extract</text>
+    <line x1="120" y1="157" x2="138" y2="157" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow2)"/>
+    <rect x="140" y="135" width="110" height="45" rx="6" fill="#34495e"/>
+    <text x="195" y="162" fill="white" text-anchor="middle">Load</text>
+    <line x1="250" y1="157" x2="268" y2="157" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow2)"/>
+    <rect x="270" y="127" width="150" height="60" rx="6" fill="#1a2530"/>
+    <text x="345" y="153" fill="white" text-anchor="middle" font-size="12">Data</text>
+    <text x="345" y="169" fill="white" text-anchor="middle" font-size="12">Lake</text>
+    <line x1="420" y1="157" x2="438" y2="157" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow2)"/>
+    <rect x="440" y="135" width="160" height="45" rx="6" fill="#2c3e50"/>
+    <text x="520" y="162" fill="white" text-anchor="middle" font-size="12">Transform (after load)</text>
+  </g>
+</svg>
+<table>
+<tr><th>Aspect</th><th>Data Lake / ELT</th><th>Data Warehouse / ETL</th></tr>
+<tr><td>Storage State</td><td>Native, raw, untransformed</td><td>Relational, structured tables</td></tr>
+<tr><td>Transformation Order</td><td>After loading, using target system's processing power</td><td>Before loading, in a temporary Staging Area</td></tr>
+<tr><td>Infrastructure</td><td>Cloud (SaaS/PaaS), dynamically scalable</td><td>Often on-premises, more maintenance</td></tr>
+<tr><td>Strength</td><td>High-speed ingestion of unstructured/Big Data, real-time analytics</td><td>Stability, security, strict privacy compliance</td></tr>
+</table>
+
+<h3>Five Data Integration Patterns</h3>
+<ol>
+<li>ETL (Extract, Transform, Load)</li>
+<li>ELT (Extract, Load, Transform)</li>
+<li>Streaming</li>
+<li>Application Integration (API)</li>
+<li>Data Virtualization</li>
+</ol>
+<p>Integration eliminates data silos by combining data from multiple sources.</p>
+
+<h3>Integration Challenges and Best Practices</h3>
+<ul>
+<li><strong>Security/Privacy:</strong> masking/anonymizing PII, encrypting data in transit</li>
+<li><strong>Latency/Timeliness:</strong> SLAs for data availability, prioritizing critical sources</li>
+<li><strong>Query Performance:</strong> caching, indexing, parallel execution</li>
+</ul>
+
+<h2>Week 4 <span class="week-label">Data Loading</span></h2>
+
+<h3>Importing from CSV / Excel (KNIME)</h3>
+<ul>
+<li><strong>CSV Reader / Excel Reader</strong> nodes</li>
+<li>Configuration: local file path, auto-detect format, row/column delimiters, quote characters, sheet selection for Excel</li>
+</ul>
+
+<h3>Importing from Databases (KNIME)</h3>
+<ul>
+<li><strong>SQLite Connector</strong> node: select database dialect, provide JDBC driver, specify file path — no username/password required</li>
+</ul>
+
+<div class="gap-note">Gap in source material: specific mechanics for importing from JSON or MySQL/SQL Server are not covered, beyond being listed as standard formats/databases.</div>
+
+<h2>Week 5 <span class="week-label">Relational Databases — Catalog &amp; Storage</span></h2>
+
+<h3>Relational Database Typology</h3>
+<table>
+<tr><th>Category</th><th>Examples</th></tr>
+<tr><td>Relational</td><td>MySQL, PostgreSQL, Microsoft SQL Server</td></tr>
+<tr><td>NoSQL</td><td>MongoDB, Cassandra, Redis</td></tr>
+<tr><td>Data Warehouse</td><td>Amazon Redshift, Google BigQuery</td></tr>
+</table>
+
+<h3>Amazon S3 and the Data Catalog</h3>
+<ul>
+<li>Amazon S3 — cloud storage for objects and files</li>
+<li>A Data Catalog database can be created to avoid working directly with source data</li>
+<li>AWS Glue's UI lists the "AWS Glue Data Catalog" as an available ETL data source</li>
+</ul>
+
+<div class="gap-note">Gap in source material: AWS Glue Crawlers, the mechanics of crawling S3 buckets, and manual-table-vs-crawler comparison are not detailed.</div>
+
+<h2>Week 6 <span class="week-label">Relational Databases — Querying</span></h2>
+
+<h3>SQL with Amazon Athena</h3>
+<ul>
+<li><code>SELECT</code> / <code>SELECT DISTINCT</code> — retrieve data, filter duplicates</li>
+<li><code>WHERE</code>, <code>LIKE</code> (with <code>%</code> wildcards) — filter, pattern match</li>
+<li><code>IS NULL</code> — locate missing records</li>
+<li><code>COUNT(*)</code>, <code>GROUP BY</code>, <code>ORDER BY</code> — aggregate and sort</li>
+</ul>
+
+<h3>S3 Select vs. Athena</h3>
+<ul>
+<li>S3 offers built-in querying capability via <strong>S3 Select</strong>, also used to verify output files after an ETL job runs</li>
+<li>Athena executes standard SQL queries against stored data</li>
+</ul>
+<div class="gap-note">Gap in source material: a deep mechanical comparison between S3 Select and Athena's backend is not provided.</div>
+
+<h2>Week 7 <span class="week-label">Source Systems and Data Ingestion</span></h2>
+
+<h3>Source Systems</h3>
+<p>The starting point where data originates in the data engineering lifecycle. Generate structured data (SQL transactional databases, CSV flat files) or unstructured/semi-structured data.</p>
+<ul>
+<li>IoT devices / IoT device swarms</li>
+<li>Smart home sensors</li>
+<li>Application message queues (e.g., Apache Kafka)</li>
+<li>Transactional databases</li>
+</ul>
+
+<h3>Data Lakes</h3>
+<ul>
+<li>Highly scalable repository holding massive volumes (terabytes/petabytes) of raw, untransformed data</li>
+<li><strong>Purpose:</strong> eliminates data silos — data scattered across disconnected systems (CRMs, analytics tools, ad platforms) — via one unified repository</li>
+<li><strong>Structure:</strong> accepts structured, semi-structured, and unstructured data (unlike data warehouses)</li>
+<li><strong>Applications:</strong> core to ELT pipelines, ingesting data immediately without preprocessing; suited to rapid consolidation and near-real-time analytics</li>
+</ul>
+
+<h2>Week 8 <span class="week-label">Data Pipeline (AWS Glue)</span></h2>
+
+<h3>Building an AWS Glue Visual ETL Pipeline</h3>
+<ol>
+<li><strong>Extract:</strong> configure an Amazon S3 Data Source (or Glue Data Catalog source), e.g. reading raw CSV files via the S3 URL</li>
+<li><strong>Transform:</strong>
+  <ul>
+  <li><strong>Change Schema node</strong> — rename columns, drop fields, change data types</li>
+  <li><strong>Filter node</strong> — SQL-like expressions (e.g., a numeric threshold condition) combined with Global AND/OR operators</li>
+  </ul>
+</li>
+<li><strong>Load:</strong> configure an Amazon S3 Data Target, output format (Parquet or compressed CSV/GZIP), compression type, target location, then save and run</li>
+</ol>
+
+<h3>Data Scheduling / Orchestration</h3>
+<ul>
+<li>General orchestration scheduling falls into <strong>Time-based</strong> or <strong>Event-based</strong> scheduling</li>
+<li>Glue UI trigger types: On demand, Event, Schedule</li>
+</ul>
+<div class="gap-note">Partially resolved: orchestration theory confirms a Time-based/Event-based split. The specific implementation mechanics of Glue's three trigger types remain undetailed.</div>
+
+<h2>Week 9 <span class="week-label">Combining Data</span></h2>
+
+<h3>Joins (KNIME Joiner Node)</h3>
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:800px;display:block;margin:10px auto;">
+  <defs>
+    <clipPath id="clipRight0"><circle cx="135" cy="90" r="45"/></clipPath>
+  </defs>
+  <g font-family="Georgia, serif" font-size="12">
+    <!-- Inner Join -->
+    <circle cx="85" cy="90" r="45" fill="#3498db" opacity="0.6" clip-path="url(#clipRight0)"/>
+    <circle cx="85" cy="90" r="45" fill="none" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="135" cy="90" r="45" fill="none" stroke="#2c3e50" stroke-width="2"/>
+    <text x="100" y="170" text-anchor="middle" font-weight="bold">INNER JOIN</text>
+
+    <!-- Left Join -->
+    <circle cx="285" cy="90" r="45" fill="#3498db" opacity="0.6"/>
+    <circle cx="285" cy="90" r="45" fill="none" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="335" cy="90" r="45" fill="none" stroke="#2c3e50" stroke-width="2"/>
+    <text x="300" y="170" text-anchor="middle" font-weight="bold">LEFT JOIN</text>
+
+    <!-- Right Join -->
+    <circle cx="485" cy="90" r="45" fill="none" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="535" cy="90" r="45" fill="#e67e22" opacity="0.6"/>
+    <circle cx="535" cy="90" r="45" fill="none" stroke="#2c3e50" stroke-width="2"/>
+    <text x="500" y="170" text-anchor="middle" font-weight="bold">RIGHT JOIN</text>
+
+    <!-- Full Outer Join -->
+    <circle cx="685" cy="90" r="45" fill="#3498db" opacity="0.5"/>
+    <circle cx="735" cy="90" r="45" fill="#e67e22" opacity="0.5"/>
+    <circle cx="685" cy="90" r="45" fill="none" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="735" cy="90" r="45" fill="none" stroke="#2c3e50" stroke-width="2"/>
+    <text x="700" y="170" text-anchor="middle" font-weight="bold">FULL OUTER</text>
+  </g>
+</svg>
+<ul>
+<li><strong>Inner Join</strong> — intersection only: matching rows in both datasets</li>
+<li><strong>Left Join</strong> — preserves all rows from the left dataset, <code>NULL</code> for unmatched</li>
+<li><strong>Right Join</strong> — preserves all rows from the right dataset, <code>NULL</code> for unmatched</li>
+<li><strong>Full Outer Join</strong> — union of both datasets, <code>NaN</code>/<code>NULL</code> for unmatched columns</li>
+</ul>
+
+<h3>Data Lineage</h3>
+<p>When appending multiple files (e.g., yearly CSVs) into a unified staging table, best practice adds a <code>filesource</code> column to preserve origin tracking.</p>
+
+<h2>Week 10 <span class="week-label">Data Cleaning and Transformation — EDA &amp; Filtering</span></h2>
+
+<h3>Exploratory Data Analysis (EDA)</h3>
+<p>Initial stage of data exploration to maximize insights, uncover structure, extract important variables, and detect anomalies — preparing data for better ML model predictions.</p>
+<ul>
+<li>Establish research questions</li>
+<li>Restructure data — create derived variables</li>
+<li>Create dummy variables — convert categorical data to numerical proxies</li>
+<li>Graphical tools — histograms for distributions, box plots to compare segments</li>
+<li>Handle missing observations — mean substitution, regression, multiple imputation</li>
+<li>Transformation — normalizing variables, logarithmic transforms for skewed distributions</li>
+</ul>
+
+<h3>The Four Pillars of Data Transformation</h3>
+<ul>
+<li><strong>Constructive:</strong> adding derived features (e.g., deriving Age from Birthdate)</li>
+<li><strong>Destructive:</strong> dropping duplicates, removing missing values, deleting sensitive columns for privacy compliance</li>
+<li><strong>Aesthetic:</strong> standardizing capitalization, country naming, date formats</li>
+<li><strong>Structural:</strong> splitting/reorganizing columns, optimizing layout for BI tools</li>
+</ul>
+<p>Data can also be grouped via <strong>Aggregation</strong> (e.g., Total Spent per user across orders).</p>
+
+<h3>Statistics (KNIME Statistics View)</h3>
+<ul>
+<li>Calculates minimum, maximum, variance, standard deviation, and quantiles (25%, 50%/Median, 75%)</li>
+<li>Automatically ignores missing values and NaN</li>
+</ul>
+
+<h3>Filtering Data</h3>
+<ul>
+<li><strong>Column Filter:</strong> exclude columns manually, by data type, by regex, or by wildcard</li>
+<li><strong>Row Filter:</strong> filters by attribute values, ranges, or missing values</li>
+</ul>
+
+<h2>Week 11 <span class="week-label">Data Cleaning and Transformation — Normalization, Missing Data, Outliers</span></h2>
+
+<h3>"Garbage In, Garbage Out"</h3>
+<p>Models trained on dirty or bad data are poorly trained and produce irrelevant analysis.</p>
+
+<h3>Normalization vs. Standardization</h3>
+<table>
+<tr><th>Method</th><th>Effect on Shape</th><th>Effect on Outliers</th><th>Best For</th></tr>
+<tr><td>Min-Max Normalization (0.0–1.0)</td><td>Preserved</td><td>Not reduced</td><td>Image processing, KNN</td></tr>
+<tr><td>Standardization (Z-score, mean 0, std 1)</td><td>Changed</td><td>Reduced</td><td>PCA, linear models</td></tr>
+</table>
+<p>KNIME's <strong>Denormalizer</strong> node reverts these transformations to original values.</p>
+
+<h3>Causes of Missing Data</h3>
+<ul>
+<li>Equipment malfunctions</li>
+<li>Deletion due to inconsistency with other records</li>
+<li>Data entry misunderstandings</li>
+<li>Data not considered important at time of entry</li>
+</ul>
+
+<h3>Handling Missing Data</h3>
+<p>Dropping records loses information; imputation is preferred:</p>
+<ul>
+<li>Global constant, mean, median (robust against outliers), or mode (categorical)</li>
+<li><strong>Forward/Backward Fill:</strong> use preceding or following value</li>
+<li><strong>Linear Interpolation:</strong> estimate from neighboring points</li>
+<li><strong>Moving Average:</strong> average of surrounding points</li>
+<li><strong>Regression Imputation:</strong> ML regression predicts the missing value</li>
+</ul>
+
+<h3>Noisy Data</h3>
+<p><strong>Binning:</strong> sort the data, partition into equal-frequency bins, smooth using bin means, medians, or boundaries. Clustering and regression functions can also smooth noise.</p>
+
+<h3>Outlier Detection</h3>
+<ul>
+<li>Clustering methods (e.g., DBSCAN)</li>
+<li>Box Plots — points beyond 1.5× the Interquartile Range (IQR) are flagged as outliers</li>
+<li><strong>Z-Score:</strong> flag values with Z-score greater than 2 or less than -2 standard deviations from the mean</li>
+</ul>
+<div class="formula">
+Normal Distribution: mean, median, and mode are equal.<br><br>
+Empirical Rule:<br>
+68% within ±1 standard deviation<br>
+95% within ±2 standard deviations<br>
+99.7% within ±3 standard deviations
+</div>
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:10px auto;">
+  <g font-family="Georgia, serif" font-size="12">
+    <path d="M0,260 C70,260 110,259 140,258 C170,256 190,245 210,233 C230,220 260,160 280,139 C300,120 330,70 350,60 C370,70 400,120 420,139 C440,160 470,220 490,233 C510,245 530,256 560,258 C590,259 630,260 700,260"
+          fill="none" stroke="#2c3e50" stroke-width="2.5"/>
+    <line x1="0" y1="260" x2="700" y2="260" stroke="#999" stroke-width="1"/>
+
+    <line x1="140" y1="258" x2="140" y2="260" stroke="#2c3e50" stroke-width="1.5"/>
+    <line x1="210" y1="233" x2="210" y2="260" stroke="#2c3e50" stroke-dasharray="3,3" stroke-width="1"/>
+    <line x1="280" y1="139" x2="280" y2="260" stroke="#2c3e50" stroke-dasharray="3,3" stroke-width="1"/>
+    <line x1="350" y1="60" x2="350" y2="260" stroke="#2c3e50" stroke-width="1.5"/>
+    <line x1="420" y1="139" x2="420" y2="260" stroke="#2c3e50" stroke-dasharray="3,3" stroke-width="1"/>
+    <line x1="490" y1="233" x2="490" y2="260" stroke="#2c3e50" stroke-dasharray="3,3" stroke-width="1"/>
+    <line x1="560" y1="258" x2="560" y2="260" stroke="#2c3e50" stroke-width="1.5"/>
+
+    <text x="140" y="275" text-anchor="middle">-3σ</text>
+    <text x="210" y="275" text-anchor="middle">-2σ</text>
+    <text x="280" y="275" text-anchor="middle">-1σ</text>
+    <text x="350" y="275" text-anchor="middle">μ</text>
+    <text x="420" y="275" text-anchor="middle">+1σ</text>
+    <text x="490" y="275" text-anchor="middle">+2σ</text>
+    <text x="560" y="275" text-anchor="middle">+3σ</text>
+
+    <line x1="280" y1="290" x2="420" y2="290" stroke="#3498db" stroke-width="2"/>
+    <text x="350" y="287" text-anchor="middle" fill="#3498db" font-weight="bold">68%</text>
+
+    <line x1="210" y1="300" x2="490" y2="300" stroke="#e67e22" stroke-width="2"/>
+    <text x="350" y="313" text-anchor="middle" fill="#e67e22" font-weight="bold">95%</text>
+
+    <line x1="140" y1="225" x2="140" y2="225" stroke="none"/>
+    <text x="60" y="313" text-anchor="middle" fill="#555" font-weight="bold">99.7% spans -3σ to +3σ</text>
+  </g>
+</svg>
+
+<h2>Week 12 <span class="week-label">Data Visualization</span></h2>
+
+<table>
+<tr><th>Chart Type</th><th>Use Case</th></tr>
+<tr><td>Scatter Plot</td><td>Two numeric variables on x/y axes — correlations, anomalies</td></tr>
+<tr><td>Bar Chart</td><td>Comparing sizes/frequencies of categorical data</td></tr>
+<tr><td>Pie Chart</td><td>Proportional parts of a whole, limited categories</td></tr>
+<tr><td>Heatmap</td><td>Color-graded density/intensity/correlations across two dimensions</td></tr>
+<tr><td>Histogram</td><td>Continuous data grouped into bins — shape, skewness, modality</td></tr>
+<tr><td>Box Plot</td><td>Q1, Median (Q2), Q3, and whiskers; outliers beyond 1.5× IQR plotted individually</td></tr>
+</table>
+
+<h3>Box Plot Anatomy</h3>
+<svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:10px auto;">
+  <g font-family="Georgia, serif" font-size="12">
+    <line x1="80" y1="100" x2="200" y2="100" stroke="#2c3e50" stroke-width="2"/>
+    <line x1="80" y1="80" x2="80" y2="120" stroke="#2c3e50" stroke-width="2"/>
+
+    <rect x="200" y="70" width="240" height="60" fill="#3498db" opacity="0.5" stroke="#2c3e50" stroke-width="2"/>
+    <line x1="320" y1="70" x2="320" y2="130" stroke="#2c3e50" stroke-width="2.5"/>
+
+    <line x1="440" y1="100" x2="560" y2="100" stroke="#2c3e50" stroke-width="2"/>
+    <line x1="560" y1="80" x2="560" y2="120" stroke="#2c3e50" stroke-width="2"/>
+
+    <circle cx="600" cy="100" r="4" fill="#e67e22"/>
+    <circle cx="625" cy="100" r="4" fill="#e67e22"/>
+
+    <text x="80" y="145" text-anchor="middle">Min</text>
+    <text x="200" y="145" text-anchor="middle">Q1</text>
+    <text x="320" y="145" text-anchor="middle">Median</text>
+    <text x="440" y="145" text-anchor="middle">Q3</text>
+    <text x="560" y="145" text-anchor="middle">Max</text>
+    <text x="612" y="145" text-anchor="middle">Outliers</text>
+
+    <line x1="200" y1="20" x2="440" y2="20" stroke="#555" stroke-width="1"/>
+    <text x="320" y="14" text-anchor="middle" fill="#555">IQR (Q3 − Q1)</text>
+  </g>
+</svg>
+
+<h2>Week 13 <span class="week-label">Big Data Technologies</span></h2>
+
+<h3>Big Data Characteristics (3Vs)</h3>
+<ul>
+<li><strong>Volume:</strong> large-scale data accumulation</li>
+<li><strong>Velocity:</strong> rapid generation/processing for real-time analytics</li>
+<li><strong>Variety:</strong> structured tables, text, XML, graph data</li>
+</ul>
+
+<h3>Batch vs. Stream Processing</h3>
+<table>
+<tr><th>Type</th><th>Data Temperature</th><th>Mechanism</th></tr>
+<tr><td>Batch Processing</td><td>Cold (infrequently accessed)</td><td>Scheduled intervals, large volumes (Hadoop)</td></tr>
+<tr><td>Stream Processing</td><td>Hot (frequently accessed)</td><td>Near real-time, sequential (Kinesis)</td></tr>
+</table>
+
+<h3>Hadoop Ecosystem</h3>
+<ul>
+<li><strong>HDFS:</strong> NameNode manages metadata; DataNodes store and replicate data blocks</li>
+<li><strong>YARN:</strong> resource management across the cluster</li>
+<li><strong>MapReduce:</strong> iterates over records, splits and maps them to keys, reduces into aggregated totals</li>
+</ul>
+
+<h3>Amazon EMR</h3>
+<p>Processes large logs via Hadoop frameworks. Cluster roles: Main Nodes, Core Nodes, Task Nodes.</p>
+
+<h2>Week 14 <span class="week-label">Dealing with Unstructured Data</span></h2>
+
+<h3>String Manipulation (KNIME)</h3>
+<ul>
+<li>Fixes syntax errors</li>
+<li>Pads strings — e.g., prepending zeros to numerical codes</li>
+<li>Case standardization via <code>lowerCase(str)</code></li>
+<li>Type conversion — dates to Unix timestamps, unit merging (e.g., meters to centimeters)</li>
+</ul>
+
+<h2>Tool Reference <span class="week-label">Cross-Week — KNIME &amp; AWS Mechanics</span></h2>
+
+<h3>KNIME Node Behavior</h3>
+<ul>
+<li><strong>GroupBy:</strong> aggregation — Mean for numeric columns, Mode for categorical columns</li>
+<li><strong>Value Lookup:</strong> dictionary-style match; on no match — insert missing value, match next smaller, or match next larger</li>
+<li><strong>Concatenate:</strong> stacks tables on top of each other (appends rows)</li>
+<li><strong>Database Connections:</strong> SQLite Connector, DB Query Reader for direct SQL execution</li>
+<li><strong>CSV Writer:</strong> Overwrite existing file, Append to bottom of it, or Fail to prevent unintentional overwriting</li>
+<li><strong>Node Status Colors:</strong> Red (not configured), Yellow (configured, ready), Green (executed), Red X (error)</li>
+</ul>
+
+<h3>AWS Glue (General)</h3>
+<p>Cloud-based ETL: extract from S3 or Data Catalog, change schemas, filter records (SQL-like expressions with AND/OR), convert formats (CSV → Parquet/GZIP).</p>
+
+</body>
+</html>
